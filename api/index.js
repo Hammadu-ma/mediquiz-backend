@@ -13,13 +13,14 @@ const app = express();
 // ==================== SECURE FIREBASE INIT ====================
 // Initialize Firebase Admin (KEYS STAY ON SERVER - NOT EXPOSED)
 admin.initializeApp({
-    credential: admin.credential.cert({
-        "type": "service_account",
-        "project_id": "medical-quiz-40228",
-        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4DSMVg4c98kQf\n5sSF8ueD631QgO4SXn0examplekeyheremorechars1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/==\n-----END PRIVATE KEY-----\n",
-        "client_email": "firebase-adminsdk-abc123@medical-quiz-40228.iam.gserviceaccount.com"
-    })
+  credential: admin.credential.cert({
+    type: "service_account",
+    project_id: "medical-quiz-40228",
+    private_key: "-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4DSMVg4c98kQf\\n5sSF8ueD631QgO4SXn0YOUR_REAL_PRIVATE_KEY_HERE\\n-----END PRIVATE KEY-----\\n",
+    client_email: "firebase-adminsdk-abc123@medical-quiz-40228.iam.gserviceaccount.com"
+  })
 });
+
 const db = admin.firestore();
 
 // ==================== MIDDLEWARE ====================
@@ -30,6 +31,7 @@ app.use(helmet({
 
 app.use(cors({
     origin: [
+        "http://localhost:3000",
         "https://app-psi-five-32.vercel.app/" // Your frontend URL
     ],
     credentials: true
@@ -506,4 +508,3 @@ app.get('/api/health', (req, res) => {
 
 // Export for Vercel
 module.exports = app;
-
