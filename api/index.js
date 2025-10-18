@@ -30,7 +30,6 @@ app.use(helmet({
 
 app.use(cors({
     origin: [
-        "http://localhost:3000",
         "https://app-psi-five-32.vercel.app/" // Your frontend URL
     ],
     credentials: true
@@ -507,3 +506,4 @@ app.get('/api/health', (req, res) => {
 
 // Export for Vercel
 module.exports = app;
+
